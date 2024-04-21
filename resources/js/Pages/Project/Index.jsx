@@ -3,7 +3,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import PageLayout from '@/Layouts/PageLayout';
 
-const Index = ({ auth, header }) => {
+const Index = React.memo(({ auth, projects }) => {
+  console.log('🚀 ~ Index ~ projects:', projects);
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -16,11 +17,13 @@ const Index = ({ auth, header }) => {
       <Head title="Projects" />
 
       <PageLayout>
-        <div className="p-6 text-gray-900">You projects here!</div>
+        <div className="p-6 text-gray-900">
+          <pre>{JSON.stringify(projects, undefined, 2)}</pre>
+        </div>
       </PageLayout>
     </AuthenticatedLayout>
   );
-};
+});
 
 Index.displayName = 'Project';
 
