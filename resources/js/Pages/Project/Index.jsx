@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import PageLayout from '@/Layouts/PageLayout';
@@ -6,7 +6,6 @@ import Pagination from '@/Components/Pagination';
 import SelectInput from '@/Components/SelectInput';
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from '@/constants';
 import TextInput from '@/Components/TextInput';
-import { ChevronDown, ChevronUp } from 'react-feather';
 import TableHeading from '@/Components/TableHeading';
 
 const Index = React.memo(({ auth, projects, queryParams }) => {
@@ -149,7 +148,11 @@ const Index = React.memo(({ auth, projects, queryParams }) => {
                         height={40}
                       />
                     </td>
-                    <td className="px-3 py-2">{project.name}</td>
+                    <td className="px-3 py-2 hover:underline font-bold text-blue-800">
+                      <Link href={route('project.show', project.id)}>
+                        {project.name}
+                      </Link>
+                    </td>
                     <td className="px-3 py-2 ">
                       <span
                         className={`px-2 py-1 text-white rounded ${PROJECT_STATUS_CLASS_MAP[project.status]}`}
