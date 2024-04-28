@@ -2,8 +2,6 @@ import { Link } from '@inertiajs/react';
 import React from 'react';
 
 const Pagination = React.memo(({ links }) => {
-  console.log('🚀 ~ Pagination ~ links:', links);
-
   return (
     <nav className="text-center mt-4">
       {links.map(link => (
