@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import PageLayout from '@/Layouts/PageLayout';
@@ -7,10 +7,10 @@ import SelectInput from '@/Components/SelectInput';
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from '@/constants';
 import TextInput from '@/Components/TextInput';
 import { ChevronDown, ChevronUp } from 'react-feather';
+import TableHeading from '@/Components/TableHeading';
 
 const Index = React.memo(({ auth, projects, queryParams }) => {
   queryParams = queryParams || {};
-  console.log('🚀 ~ Index ~ queryParams:', queryParams);
 
   const searchFieldChanged = (name, value) => {
     if (value) {
@@ -57,39 +57,47 @@ const Index = React.memo(({ auth, projects, queryParams }) => {
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
                 <tr className="text-nowrap">
-                  <th
-                    onClick={e => sortChanged('id')}
-                    className="px-3 py-3 flex items-center justify-between gap-1"
+                  <TableHeading
+                    name="id"
+                    sortChanged={sortChanged}
+                    sortField={queryParams.sort_field}
+                    sortDirection={queryParams.sort_direction}
                   >
-                    ID
-                    {queryParams.sort_direction === 'asc' ? (
-                      <ChevronDown className="w-4" size={16} />
-                    ) : (
-                      <ChevronUp className="w-4" size={16} />
-                    )}
-                  </th>
+                    Id
+                  </TableHeading>
                   <th className="px-3 py-3">Image</th>
-                  <th onClick={e => sortChanged('name')} className="px-3 py-3">
+                  <TableHeading
+                    name="name"
+                    sortChanged={sortChanged}
+                    sortField={queryParams.sort_field}
+                    sortDirection={queryParams.sort_direction}
+                  >
                     Name
-                  </th>
-                  <th
-                    onClick={e => sortChanged('status')}
-                    className="px-3 py-3"
+                  </TableHeading>
+                  <TableHeading
+                    name="status"
+                    sortChanged={sortChanged}
+                    sortField={queryParams.sort_field}
+                    sortDirection={queryParams.sort_direction}
                   >
                     Status
-                  </th>
-                  <th
-                    onClick={e => sortChanged('created_at')}
-                    className="px-3 py-3"
+                  </TableHeading>
+                  <TableHeading
+                    name="created_at"
+                    sortChanged={sortChanged}
+                    sortField={queryParams.sort_field}
+                    sortDirection={queryParams.sort_direction}
                   >
                     Create Date
-                  </th>
-                  <th
-                    onClick={e => sortChanged('due_date')}
-                    className="px-3 py-3"
+                  </TableHeading>
+                  <TableHeading
+                    name="due_date"
+                    sortChanged={sortChanged}
+                    sortField={queryParams.sort_field}
+                    sortDirection={queryParams.sort_direction}
                   >
                     Due Date
-                  </th>
+                  </TableHeading>
                   <th className="px-3 py-3">Created By</th>
                   <th className="px-3 py-3">Actions</th>
                 </tr>
