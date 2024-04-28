@@ -4,7 +4,6 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 const TableHeading = React.memo(
   ({ sortChanged, sortField, sortDirection, name, children }) => {
     const isSortedByThis = direction => {
-      console.log(direction);
       if (sortField === name && sortDirection === direction) {
         return true;
       }
