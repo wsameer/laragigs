@@ -67,11 +67,9 @@ class ProjectController extends Controller
 
     if (request('name')) {
       $query->where("name", "like", "%" . request("name") . "%");
-    } else if (request('status')) {
-      $query->where("status", request("status"));
     }
 
-    if (request("status")) {
+    if (request('status')) {
       $query->where("status", request("status"));
     }
 
@@ -80,7 +78,7 @@ class ProjectController extends Controller
       ->onEachSide(1);
 
     return inertia("Project/Show", [
-      "projects" => new ProjectResource($project),
+      "project" => new ProjectResource($project),
       "tasks" => TaskResource::collection($tasks),
       "queryParams" => request()->query() ?: null
     ]);

@@ -19,7 +19,7 @@ const Pagination = React.memo(({ links }) => {
               : 'hover:bg-gray-200')
           }
           dangerouslySetInnerHTML={{ __html: link.label }}
-        ></Link>
+        />
       ))}
     </nav>
   );
